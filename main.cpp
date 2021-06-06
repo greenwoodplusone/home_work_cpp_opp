@@ -1,40 +1,97 @@
-/*
-РўРµРјР°: РЎС‚Р°С‚РёС‡РµСЃРєРёРµ РїРµСЂРµРјРµРЅРЅС‹Рµ-С‡Р»РµРЅС‹ Рё С„СѓРЅРєС†РёРёС‡Р»РµРЅС‹, СЂР°Р·Р»РёС‡РЅС‹Рµ СЃРїРѕСЃРѕР±С‹ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
-
-Р—Р°РґР°РЅРёРµ.
-Р Р°Р·СЂР°Р±РѕС‚Р°С‚СЊ РєР»Р°СЃСЃ String, РєРѕС‚РѕСЂС‹Р№ РІ РґР°Р»СЊРЅРµР№С€РµРј Р±СѓРґРµС‚
-РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚СЂРѕРєР°РјРё. РљР»Р°СЃСЃ РґРѕР»Р¶РµРЅ
-СЃРѕРґРµСЂР¶Р°С‚СЊ:
-вЂў	 РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ, РїРѕР·РІРѕР»СЏСЋС‰РёР№ СЃРѕР·РґР°С‚СЊ
-СЃС‚СЂРѕРєСѓ РґР»РёРЅРѕР№ 80 СЃРёРјРІРѕР»РѕРІ;
-вЂў	 РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ, РїРѕР·РІРѕР»СЏСЋС‰РёР№ СЃРѕР·РґР°РІР°С‚СЊ СЃС‚СЂРѕРєСѓ РїСЂРѕРёР·РІРѕР»СЊРЅРѕРіРѕ СЂР°Р·РјРµСЂР°;
-вЂў	 РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ, РєРѕС‚РѕСЂС‹Р№ СЃРѕР·РґР°С‘С‚ СЃС‚СЂРѕРєСѓ Рё РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ РµС‘ СЃС‚СЂРѕРєРѕР№, РїРѕР»СѓС‡РµРЅРЅРѕР№ РѕС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ.
-РќРµРѕР±С…РѕРґРёРјРѕ СЃРѕР·РґР°С‚СЊ РґРµСЃС‚СЂСѓРєС‚РѕСЂ, Р° С‚Р°РєР¶Рµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ
-РјРµС…Р°РЅРёР·РјС‹ РґРµР»РµРіРёСЂРѕРІР°РЅРёСЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРѕРІ, РµСЃР»Рё СЌС‚Рѕ РІРѕР·РјРѕР¶РЅРѕ.
-РљР»Р°СЃСЃ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РјРµС‚РѕРґС‹ РґР»СЏ РІРІРѕРґР° СЃС‚СЂРѕРє СЃ РєР»Р°РІРёР°С‚СѓСЂС‹ Рё РІС‹РІРѕРґР° СЃС‚СЂРѕРє РЅР° СЌРєСЂР°РЅ. РўР°РєР¶Рµ РЅСѓР¶РЅРѕ СЂРµР°Р»РёР·РѕРІР°С‚СЊ
-СЃС‚Р°С‚РёС‡РµСЃРєСѓСЋ С„СѓРЅРєС†РёСЋ-С‡Р»РµРЅ, РєРѕС‚РѕСЂР°СЏ Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰Р°С‚СЊ
-РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРѕР·РґР°РЅРЅС‹С… РѕР±СЉРµРєС‚РѕРІ СЃС‚СЂРѕРє.
- */
-
 #include <iostream>
-#include "MyString.h"
+#include "Subscriber.h"
+#include "PhoneBook.h"
 
-int MyString::strCount {0};
+using namespace std;
 
-int main() {
+int main()
+{
     setlocale(LC_ALL, "");
 
-    MyString str1 {};
-    str1.addStr();
-    str1.printStr();
+    // Добавление новой телефонной книги
+    PhoneBook ph1 = PhoneBook();
 
-    MyString str2 {125};
-    str2.printStr();
+    do {
+        cout << "Меню:" << endl;
+        cout << "1. Добавить пользователя" << endl;
+        cout << "2. Удалить пользователя" << endl;
+        cout << "3. Вывести всех пользователей" << endl;
+        cout << "4. Поиск пользователя по ФИО" << endl;
+        cout << "5. Завершить программу" << endl;
 
-    MyString str3 {"Hello world!"};
-    str3.printStr();
+        cout << "Выберите пункт меню - ";
+        int input;
+        cin >> input;
 
-    MyString::printStrCount();
+        cout << endl;
+
+        switch (input)
+        {
+            case 1:
+                ph1.addName();
+                break;
+            case 2:
+                cout << "Введите id пользователя - ";
+                int id;
+                cin >> id;
+                cout << endl;
+                cout << "Пользователь " << (*(ph1.getName(id))).getName() << " " << (*(ph1.getName(id))).getFirstName() << " удален" << endl;
+                ph1.deleteName(id);
+                cout << endl;
+                break;
+            case 3:
+                for (int i = 0; i < 255; i++) {
+                    if (ph1.getName(i) != nullptr) {
+                        cout << "Пользователь № " << i << endl;
+                        (*(ph1.getName(i))).printSubscriber();
+                        cout << endl;
+                    }
+                }
+                break;
+            case 4:
+                {
+                    cout << "Введите имя пользователя - ";
+                    char* nameMain = new char[255];
+                    cin >> nameMain; 
+
+                    cout << endl;
+
+                    cout << "Введите фамилию пользователя - ";
+                    char* firstNameMain = new char[255];
+                    cin >> firstNameMain;
+                    cout << endl;
+
+                    Subscriber* subscriber = ph1.searchName(nameMain, firstNameMain);
+
+                    if (subscriber != nullptr) {
+                        cout << "Найден пользователь: " << endl;
+                        (*subscriber).printSubscriber();
+                        cout << endl;
+                    } else {
+                        cout << "Пользователь не найден!" << endl;
+                        cout << endl;
+                    } 
+
+                    nameMain = nullptr;
+                    delete[] nameMain;
+                    firstNameMain = nullptr;
+                    delete[] firstNameMain;
+                }
+                
+                break;
+            case 5:
+                return 0;
+            default:
+                cout << "Выбран несуществующий пункт меню!" << endl;
+                break;
+        }
+    } while (true);
+
+    /*
+    Subscriber sub1 = Subscriber("Ivan0", "Ivanov0", "Ivanovich0", 2741712, 2745962, 927947, "Информация");
+    cout << sub1.getName() << endl;
+    sub1.printSubscriber();
+    */
 
     return 0;
 }
