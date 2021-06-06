@@ -8,18 +8,18 @@ int main()
 {
     setlocale(LC_ALL, "");
 
-    // Добавление новой телефонной книги
+    // Р”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕР№ С‚РµР»РµС„РѕРЅРЅРѕР№ РєРЅРёРіРё
     PhoneBook ph1 = PhoneBook();
 
     do {
-        cout << "Меню:" << endl;
-        cout << "1. Добавить пользователя" << endl;
-        cout << "2. Удалить пользователя" << endl;
-        cout << "3. Вывести всех пользователей" << endl;
-        cout << "4. Поиск пользователя по ФИО" << endl;
-        cout << "5. Завершить программу" << endl;
+        cout << "РњРµРЅСЋ:" << endl;
+        cout << "1. Р”РѕР±Р°РІРёС‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ" << endl;
+        cout << "2. РЈРґР°Р»РёС‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ" << endl;
+        cout << "3. Р’С‹РІРµСЃС‚Рё РІСЃРµС… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№" << endl;
+        cout << "4. РџРѕРёСЃРє РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РїРѕ Р¤РРћ" << endl;
+        cout << "5. Р—Р°РІРµСЂС€РёС‚СЊ РїСЂРѕРіСЂР°РјРјСѓ" << endl;
 
-        cout << "Выберите пункт меню - ";
+        cout << "Р’С‹Р±РµСЂРёС‚Рµ РїСѓРЅРєС‚ РјРµРЅСЋ - ";
         int input;
         cin >> input;
 
@@ -31,18 +31,18 @@ int main()
                 ph1.addName();
                 break;
             case 2:
-                cout << "Введите id пользователя - ";
+                cout << "Р’РІРµРґРёС‚Рµ id РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ - ";
                 int id;
                 cin >> id;
                 cout << endl;
-                cout << "Пользователь " << (*(ph1.getName(id))).getName() << " " << (*(ph1.getName(id))).getFirstName() << " удален" << endl;
+                cout << "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ " << (*(ph1.getName(id))).getName() << " " << (*(ph1.getName(id))).getFirstName() << " СѓРґР°Р»РµРЅ" << endl;
                 ph1.deleteName(id);
                 cout << endl;
                 break;
             case 3:
                 for (int i = 0; i < 255; i++) {
                     if (ph1.getName(i) != nullptr) {
-                        cout << "Пользователь № " << i << endl;
+                        cout << "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ в„– " << i << endl;
                         (*(ph1.getName(i))).printSubscriber();
                         cout << endl;
                     }
@@ -50,13 +50,13 @@ int main()
                 break;
             case 4:
                 {
-                    cout << "Введите имя пользователя - ";
+                    cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ - ";
                     char* nameMain = new char[255];
                     cin >> nameMain; 
 
                     cout << endl;
 
-                    cout << "Введите фамилию пользователя - ";
+                    cout << "Р’РІРµРґРёС‚Рµ С„Р°РјРёР»РёСЋ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ - ";
                     char* firstNameMain = new char[255];
                     cin >> firstNameMain;
                     cout << endl;
@@ -64,11 +64,11 @@ int main()
                     Subscriber* subscriber = ph1.searchName(nameMain, firstNameMain);
 
                     if (subscriber != nullptr) {
-                        cout << "Найден пользователь: " << endl;
+                        cout << "РќР°Р№РґРµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ: " << endl;
                         (*subscriber).printSubscriber();
                         cout << endl;
                     } else {
-                        cout << "Пользователь не найден!" << endl;
+                        cout << "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅРµ РЅР°Р№РґРµРЅ!" << endl;
                         cout << endl;
                     } 
 
@@ -82,13 +82,13 @@ int main()
             case 5:
                 return 0;
             default:
-                cout << "Выбран несуществующий пункт меню!" << endl;
+                cout << "Р’С‹Р±СЂР°РЅ РЅРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ РїСѓРЅРєС‚ РјРµРЅСЋ!" << endl;
                 break;
         }
     } while (true);
 
     /*
-    Subscriber sub1 = Subscriber("Ivan0", "Ivanov0", "Ivanovich0", 2741712, 2745962, 927947, "Информация");
+    Subscriber sub1 = Subscriber("Ivan0", "Ivanov0", "Ivanovich0", 2741712, 2745962, 927947, "РРЅС„РѕСЂРјР°С†РёСЏ");
     cout << sub1.getName() << endl;
     sub1.printSubscriber();
     */

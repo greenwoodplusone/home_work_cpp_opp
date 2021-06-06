@@ -2,53 +2,53 @@
 #include <cstring>
 
 /*
-* Возвращает ссылку на поользователя из телефонной книги
+* Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃСЃС‹Р»РєСѓ РЅР° РїРѕРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР· С‚РµР»РµС„РѕРЅРЅРѕР№ РєРЅРёРіРё
 */
 Subscriber* PhoneBook::getName(int id) {
 	return array[id];
 }
 
 /*
-* Добавляет пользователя в телефонную книгу
+* Р”РѕР±Р°РІР»СЏРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ С‚РµР»РµС„РѕРЅРЅСѓСЋ РєРЅРёРіСѓ
 */
 void PhoneBook::addName() {
 	char* name = new char[255];
-	cout << "Введите имя - " << endl;
+	cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ - " << endl;
 	cin >> name;
 
 	char* firstName = new char[255];
-	cout << "Введите фамилию - " << endl;
+	cout << "Р’РІРµРґРёС‚Рµ С„Р°РјРёР»РёСЋ - " << endl;
 	cin >> firstName;
 	strcpy_s(firstName, 20, firstName);
 
 	char* patronymic = new char[255];
-	cout << "Введите отчество - " << endl;
+	cout << "Р’РІРµРґРёС‚Рµ РѕС‚С‡РµСЃС‚РІРѕ - " << endl;
 	cin >> patronymic;
 	strcpy_s(patronymic, 20, patronymic);
 
 	long homePhoneNumber;
-	cout << "Введите домашний номер телефона - " << endl;
+	cout << "Р’РІРµРґРёС‚Рµ РґРѕРјР°С€РЅРёР№ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° - " << endl;
 	cin >> homePhoneNumber;
 
 	long workPhoneNumber;
-	cout << "Введите рабочий номер телефона - " << endl;
+	cout << "Р’РІРµРґРёС‚Рµ СЂР°Р±РѕС‡РёР№ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° - " << endl;
 	cin >> workPhoneNumber;
 
 	long mobilePhoneNumber;
-	cout << "Введите сотовый номер телефона - " << endl;
+	cout << "Р’РІРµРґРёС‚Рµ СЃРѕС‚РѕРІС‹Р№ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° - " << endl;
 	cin >> mobilePhoneNumber;
 
 	char* additionally = new char[255];
-	cout << "Введите дополнительную информацию - " << endl;
+	cout << "Р’РІРµРґРёС‚Рµ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ - " << endl;
 	cin >> additionally;
 
-	array[id++] = new Subscriber("Ivan0", "Ivanov0", "Ivanovich0", 2741712, 2745962, 927947, "Информация");
+	array[id++] = new Subscriber("Ivan0", "Ivanov0", "Ivanovich0", 2741712, 2745962, 927947, "РРЅС„РѕСЂРјР°С†РёСЏ");
 	array[id++] = new Subscriber(name, firstName, patronymic, homePhoneNumber, workPhoneNumber, mobilePhoneNumber, additionally);
 }
 
 
 /*
-* Удаляет пользователя из телефонной книги
+* РЈРґР°Р»СЏРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР· С‚РµР»РµС„РѕРЅРЅРѕР№ РєРЅРёРіРё
 */
 void PhoneBook::deleteName(int id) {
 	array[id] = nullptr;
@@ -56,7 +56,7 @@ void PhoneBook::deleteName(int id) {
 }
 
 /*
-* Поиск пользователя в телефонной книге
+* РџРѕРёСЃРє РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ С‚РµР»РµС„РѕРЅРЅРѕР№ РєРЅРёРіРµ
 */
 Subscriber* PhoneBook::searchName(const char* name, const char* firstName) {
 	int idSearch;
