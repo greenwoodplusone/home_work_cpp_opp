@@ -4,7 +4,4 @@ project(untitled)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(untitled main.cpp
-        PhoneBook.cpp
-        PhoneBook.h
-        Subscriber.cpp
-        Subscriber.h)
+        Fraction.cpp Fraction.h)
