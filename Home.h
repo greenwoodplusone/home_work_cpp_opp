@@ -1,47 +1,100 @@
 #ifndef UNTITLED_HOME_H
 #define UNTITLED_HOME_H
 
+#include "iostream"
 #include <cstdlib>
 #include "Apartment.h"
+#include "City.h"
 
 class Home {
     int numberHome; // 1
     int countFrontDoor; // 4
     int countFloor; // 4
     int countApartment; // 64
-    Apartment* allApartment;
+    //Apartment* allApartment;
+
+    static int countHome;
+
 public:
-    Home(int numberHome, int countFrontDoor, int countFloor, int countApartment) : numberHome(
-            numberHome), countFrontDoor(countFrontDoor), countFloor(countFloor), countApartment(countApartment) {
-        allApartment = new Apartment[countApartment];
 
-        for (int i {0}; i < countApartment; ++i) {
-            // Ð’Ñ‹ÑÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°ÐµÐ¼ Ð½Ð¾Ð¼ÐµÑ€ Ð¿Ð¾Ð´ÑŠÐµÐ·Ð´Ð°
-            int numberFrontDoor = (i + 1 - 1) / (countApartment / countFrontDoor) + 1;
+    Home(int numberHomeP, int countFrontDoorP, int countFloorP, int countApartmentP) : numberHome(
+            numberHomeP), countFrontDoor(countFrontDoorP), countFloor(countFloorP), countApartment(countApartmentP) {
+        /*
+        allApartment = new Apartment[countApartmentP]{};
 
-            // Ð’Ñ‹ÑÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°ÐµÐ¼ Ð½Ð¾Ð¼ÐµÑ€ ÑÑ‚Ð°Ð¶Ð°
-            int numberFloor = ((i + 1) % numberFrontDoor + 1) / (countApartment / countFloor) + 1;
+        for (int i {0}; i < countApartmentP; ++i) {
+            // Âûñ÷èòûâàåì íîìåð ïîäúåçäà
+            int numberFrontDoor = (i + 1 - 1) / (countApartmentP / countFrontDoorP) + 1;
+
+            // Âûñ÷èòûâàåì íîìåð ýòàæà
+            int numberFloor = ((i + 1) % numberFrontDoor + 1) / (countApartmentP / countFloorP) + 1;
 
             int randomArea = rand() % 60 + 1;
 
             allApartment[i] = Apartment(i, numberFloor, numberFrontDoor, randomArea);
         }
+        */
+
+        // Óâåëè÷èåì ñ÷åò÷èê êîëè÷åñòâà äîìîâ
+        Home::countHome++;
 
     }
 
     //Home () : Home(1, 1, 1, 1) {}
 
+    /*
     ~Home() {
         allApartment = nullptr;
         delete allApartment;
     }
+     */
 
-    Home printHome () {
-        std::cout << "Ð”Ð¾Ð¼ â„–" << numberHome << " (" << countFrontDoor
-                  << " Ð¿Ð¾Ð´ÑŠÐµÐ·Ð´Ð¾Ð² " << countFloor << " ÑÑ‚Ð°Ð¶ÐµÐ¹ " << countApartment << " ÐºÐ²Ð°Ñ€Ñ‚Ð¸Ñ€" << std::endl;
+    Home& printHome () {
+        std::cout << "Äîì ¹" << getNumberHome() << " (" << getCountFrontDoor()
+                  << " ïîäúåçäà, " << getCountFloor() << " ýòàæåé, " << getCountApartment() << " êâàðòèð)" << std::endl;
         return *this;
     }
+
+    /*
+    Home& addPeopleAllApartment(int numberApartmentP, People* peopleP) {
+        allApartment[numberApartmentP].setAllPeople(peopleP);
+        return *this;
+    }
+     */
+
+    int getNumberHome() const {
+        return numberHome;
+    }
+
+    void setNumberHome(int numberHome) {
+        Home::numberHome = numberHome;
+    }
+
+    int getCountFrontDoor() const {
+        return countFrontDoor;
+    }
+
+    void setCountFrontDoor(int countFrontDoor) {
+        Home::countFrontDoor = countFrontDoor;
+    }
+
+    int getCountFloor() const {
+        return countFloor;
+    }
+
+    void setCountFloor(int countFloor) {
+        Home::countFloor = countFloor;
+    }
+
+    int getCountApartment() const {
+        return countApartment;
+    }
+
+    void setCountApartment(int countApartment) {
+        Home::countApartment = countApartment;
+    }
 };
+
 
 
 #endif //UNTITLED_HOME_H

@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "Apartment.h"
+#include "Home.h"
 
 class People {
     char* name;
@@ -21,7 +22,7 @@ public:
         delete name;
     }
 
-    People& setnumberApartment (int numberApartment) {
+    People& setNumberApartment (int numberApartment) {
         this->numberApartment = numberApartment;
         return *this;
     }
@@ -31,11 +32,21 @@ public:
     }
 
     People& printPeople () {
-        std::cout << name << " (" << age << " Р»РµС‚) РїСЂРѕР¶РёРІР°РµС‚ РІ РєРІР°СЂС‚РёСЂРµ в„– " <<
+        std::cout << name << " (" << age << " лет) проживает в квартире № " <<
                   numberApartment << std::endl;
 
         return *this;
     }
+
+    /*
+    void addApartment (int numberHomeP, int numberApartmentP) {
+        if (numberApartmentP > Home::arrayHome[numberHomeP].getCountApartment()) {
+            std::cout << "В данном доме нет такой квартиры!" << std::endl;
+        } else {
+            Home::arrayHome[numberHomeP].addPeopleAllApartment(numberApartmentP, this);
+        }
+    }
+    */
 };
 
 

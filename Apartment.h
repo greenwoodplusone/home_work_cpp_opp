@@ -6,6 +6,7 @@
 #define UNTITLED_APARTMENT_H
 
 #include <cstdlib>
+#include "Home.h"
 #include "People.h"
 
 class Apartment {
@@ -13,24 +14,32 @@ class Apartment {
     int numberFloor;
     int numberFrontDoor;
     int area;
-    People *allPeople;
+    //People *allPeople;
 public:
     Apartment(int numberApartment, int numberFloor, int numberFrontDoor, int area)
             : numberApartment(numberApartment), numberFloor(numberFloor), numberFrontDoor(numberFrontDoor), area(area) {
-        //allPeople = new People[10];
+//        allPeople = new People[10] {nullptr};
     }
 
     Apartment () : Apartment(1, 1, 1, 30) {}
 
+    /*
     Apartment addPeople (People people) {
         allPeople[people.getNumberApartment()] = people;
         return *this;
     }
+     */
 
     Apartment printApartment (int numberApartment) {
-        std::cout << numberFrontDoor << " Ð¿Ð¾Ð´ÑŠÐµÐ·Ð´ " << numberFloor << " ÑÑ‚Ð°Ð¶" << std::endl;
+        std::cout << numberFrontDoor << " ïîäúåçä " << numberFloor << " ýòàæ" << std::endl;
         return *this;
     }
+
+    /*
+    void setAllPeople(People *allPeople) {
+        Apartment::allPeople = allPeople;
+    }
+     */
 };
 
 
