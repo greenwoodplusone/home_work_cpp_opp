@@ -53,4 +53,12 @@ int main()
     reservoir1.areaComparison(reservoir3);
     std::cout << std::endl;
 
+    std::cout << reservoir2.getLengthReservoir() << std::endl;
+    std::cout << reservoir3.getLengthReservoir() << std::endl;
+
+    Reservoir::arrayReservoir[0]->printReservoir();
+
+    Reservoir::deleteReservoirOfArray(reservoir1);
+    std::cout << std::endl;
+    Reservoir::arrayReservoir[0]->printReservoir();
 }

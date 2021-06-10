@@ -17,11 +17,17 @@ class Reservoir {
     double coefficient;  // абстрактный коэффициент для расчета объема водоема
     std::string typeReservoir;
 public:
+    // Создание динмачиеского массива с объектами Reservoir
+    static Reservoir** arrayReservoir;
+    static int countReservoir;
+
     explicit Reservoir(std::string nameReservoir, int lengthReservoir, int widthReservoir, int depthReservoir);
 
     explicit Reservoir(std::string nameReservoir);
 
     explicit Reservoir(int lengthReservoir, int widthReservoir, int depthReservoir);
+
+    Reservoir(const Reservoir& object);
 
     std::string getNameReservoir() const;
 
@@ -49,7 +55,16 @@ public:
 
     Reservoir& printReservoir();
 
-    Reservoir& areaComparison (Reservoir reservoirP);
+    Reservoir& areaComparison (const Reservoir& reservoirP);
+
+    // Удаление Reservoir из массива объектов
+    static void deleteReservoirOfArray(const Reservoir& reservoirP) {
+        for (int i{0}; i < countReservoir; ++i) {
+            if (arrayReservoir[i] == &reservoirP) {
+                arrayReservoir[i] = nullptr;
+            }
+        }
+    }
 };
 
 

@@ -5,9 +5,9 @@
 #include <iostream>
 #include "Reservoir.h"
 
-Reservoir::Reservoir(std::string nameReservoirP, int lengthReservoirP, int widthReservoirP, int depthReservoirP) : nameReservoir(
-        nameReservoirP), lengthReservoir(lengthReservoirP), widthReservoir(widthReservoirP), depthReservoir(
-        depthReservoirP) {
+Reservoir::Reservoir(std::string nameReservoirP, int lengthReservoirP, int widthReservoirP, int depthReservoirP) :
+        nameReservoir{nameReservoirP}, lengthReservoir{lengthReservoirP},
+        widthReservoir{widthReservoirP}, depthReservoir{depthReservoirP} {
     coefficient = (rand() % (9 - 5) + 5)/10.0;
 
     int squareReservoir = lengthReservoirP * widthReservoirP;
@@ -23,12 +23,23 @@ Reservoir::Reservoir(std::string nameReservoirP, int lengthReservoirP, int width
     } else {
         typeReservoir = arrayTypeReservoir[0];
     }
+
+    arrayReservoir[countReservoir++] = this;
+
+    std::cout << "Конструктор для объекта " << this << std::endl;
 }
 
 Reservoir::Reservoir(std::string nameReservoir) : Reservoir(nameReservoir, 100, 100, 10) {}
 
 Reservoir::Reservoir(int lengthReservoir, int widthReservoir, int depthReservoir) :
         Reservoir("Common", lengthReservoir, widthReservoir, depthReservoir) {}
+
+Reservoir::Reservoir(const Reservoir& object)
+        : nameReservoir{object.nameReservoir}, lengthReservoir{object.lengthReservoir},
+          widthReservoir{object.widthReservoir}, depthReservoir{object.depthReservoir} {
+    std::cout << "Copy constructed for " << this
+              << '\n';
+}
 
 std::string Reservoir::getNameReservoir() const {
     return nameReservoir;
@@ -79,14 +90,18 @@ int Reservoir::squareReservoir()const {
 }
 
 Reservoir& Reservoir::printReservoir() {
-    std::cout << "Водоем " << this->getNameReservoir() <<
-              ", объем: " << this->volumeReservoir() <<
-              ", площадь поверхности: " << this->squareReservoir() <<
-              ", тип: " << this->getTypeReservoir();
+    if (this == nullptr) {
+        std::cout << "Объект был удален ранее" << std::endl;
+    } else {
+        std::cout << "Водоем " << this->getNameReservoir() <<
+                  ", объем: " << this->volumeReservoir() <<
+                  ", площадь поверхности: " << this->squareReservoir() <<
+                  ", тип: " << this->getTypeReservoir();
+    }
     return *this;
 }
 
-Reservoir& Reservoir::areaComparison (Reservoir reservoirP) {
+Reservoir& Reservoir::areaComparison (const Reservoir& reservoirP) {
     if (this->getTypeReservoir() == reservoirP.getTypeReservoir()) {
         std::cout << "Водоем " << this->getNameReservoir() <<
                   ((this->squareReservoir() > reservoirP.squareReservoir()) ? " больше" : " меньше") <<
@@ -95,7 +110,11 @@ Reservoir& Reservoir::areaComparison (Reservoir reservoirP) {
     } else {
         std::cout << "Водоем " << this->getNameReservoir() << " и " <<
                   reservoirP.getNameReservoir() << " разного типа!";
+        //reservoirP.setLengthReservoir(200);
     }
     return *this;
 }
+
+Reservoir** Reservoir::arrayReservoir = new Reservoir*[255];
+int Reservoir::countReservoir = 0;
 
