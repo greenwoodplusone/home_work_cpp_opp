@@ -4,4 +4,4 @@ project(untitled)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(untitled main.cpp
-         Home.cpp Home.h Apartment.cpp Apartment.h People.cpp People.h)
+         Reservoir.cpp Reservoir.h)
