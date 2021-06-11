@@ -4,39 +4,40 @@
 #include "iostream"
 #include <cstdlib>
 #include "Apartment.h"
-#include "City.h"
 
 class Home {
     int numberHome; // 1
     int countFrontDoor; // 4
     int countFloor; // 4
     int countApartment; // 64
-    //Apartment* allApartment;
+    Apartment** allApartment;
 
+    // –°–æ–∑–¥–∞–Ω–∏–µ –º–∞—Å—Å–∏–≤–∞ —Å –¥–∞–Ω–Ω—ã–º–∏ –¥–æ–º–æ–≤
+    static Home** arrayHome;
     static int countHome;
 
 public:
 
     Home(int numberHomeP, int countFrontDoorP, int countFloorP, int countApartmentP) : numberHome(
             numberHomeP), countFrontDoor(countFrontDoorP), countFloor(countFloorP), countApartment(countApartmentP) {
-        /*
-        allApartment = new Apartment[countApartmentP]{};
+
+        allApartment = new Apartment*[countApartmentP]{};
 
         for (int i {0}; i < countApartmentP; ++i) {
-            // ¬˚Ò˜ËÚ˚‚‡ÂÏ ÌÓÏÂ ÔÓ‰˙ÂÁ‰‡
+            // –í—ã—Å—á–∏—Ç—ã–≤–∞–µ–º –Ω–æ–º–µ—Ä –ø–æ–¥—ä–µ–∑–¥–∞
             int numberFrontDoor = (i + 1 - 1) / (countApartmentP / countFrontDoorP) + 1;
 
-            // ¬˚Ò˜ËÚ˚‚‡ÂÏ ÌÓÏÂ ˝Ú‡Ê‡
+            // –í—ã—Å—á–∏—Ç—ã–≤–∞–µ–º –Ω–æ–º–µ—Ä —ç—Ç–∞–∂–∞
             int numberFloor = ((i + 1) % numberFrontDoor + 1) / (countApartmentP / countFloorP) + 1;
 
             int randomArea = rand() % 60 + 1;
 
-            allApartment[i] = Apartment(i, numberFloor, numberFrontDoor, randomArea);
+            allApartment[i] = &Apartment(i, numberFloor, numberFrontDoor, randomArea);
         }
-        */
 
-        // ”‚ÂÎË˜ËÂÏ Ò˜ÂÚ˜ËÍ ÍÓÎË˜ÂÒÚ‚‡ ‰ÓÏÓ‚
-        Home::countHome++;
+
+        // –£–î–æ–±–∞–≤–ª–µ–Ω–∏–µ –¥–æ–º–∞ –≤ –º–∞—Å–∏–≤–∞ –∏ —É–≤–µ–ª–∏—á–µ–Ω–∏–µ —Å—á–µ—Ç—á–∏–∫–∞
+        arrayHome[countHome++] = this;
 
     }
 
@@ -50,8 +51,8 @@ public:
      */
 
     Home& printHome () {
-        std::cout << "ƒÓÏ π" << getNumberHome() << " (" << getCountFrontDoor()
-                  << " ÔÓ‰˙ÂÁ‰‡, " << getCountFloor() << " ˝Ú‡ÊÂÈ, " << getCountApartment() << " Í‚‡ÚË)" << std::endl;
+        std::cout << "–î–æ–º ‚Ññ" << getNumberHome() << " (" << getCountFrontDoor()
+                  << " –ø–æ–¥—ä–µ–∑–¥–∞, " << getCountFloor() << " —ç—Ç–∞–∂–µ–π, " << getCountApartment() << " –∫–≤–∞—Ä—Ç–∏—Ä)" << std::endl;
         return *this;
     }
 

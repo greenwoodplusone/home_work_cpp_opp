@@ -32,7 +32,7 @@ public:
     }
 
     People& printPeople () {
-        std::cout << name << " (" << age << " ëåò) ïðîæèâàåò â êâàðòèðå ¹ " <<
+        std::cout << name << " (" << age << " Ð»ÐµÑ‚) Ð¿Ñ€Ð¾Ð¶Ð¸Ð²Ð°ÐµÑ‚ Ð² ÐºÐ²Ð°Ñ€Ñ‚Ð¸Ñ€Ðµ â„– " <<
                   numberApartment << std::endl;
 
         return *this;
@@ -41,7 +41,7 @@ public:
     /*
     void addApartment (int numberHomeP, int numberApartmentP) {
         if (numberApartmentP > Home::arrayHome[numberHomeP].getCountApartment()) {
-            std::cout << "Â äàííîì äîìå íåò òàêîé êâàðòèðû!" << std::endl;
+            std::cout << "Ð’ Ð´Ð°Ð½Ð½Ð¾Ð¼ Ð´Ð¾Ð¼Ðµ Ð½ÐµÑ‚ Ñ‚Ð°ÐºÐ¾Ð¹ ÐºÐ²Ð°Ñ€Ñ‚Ð¸Ñ€Ñ‹!" << std::endl;
         } else {
             Home::arrayHome[numberHomeP].addPeopleAllApartment(numberApartmentP, this);
         }
