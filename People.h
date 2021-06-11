@@ -46,7 +46,7 @@ public:
             Home::arrayHome[numberHomeP].addPeopleAllApartment(numberApartmentP, this);
         }
     }
-    */
+   */
 };
 
 

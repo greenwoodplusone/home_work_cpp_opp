@@ -31,7 +31,7 @@ public:
      */
 
     Apartment printApartment (int numberApartment) {
-        std::cout << numberFrontDoor << " ïîäúåçä " << numberFloor << " ıòàæ" << std::endl;
+        std::cout << numberFrontDoor << " Ğ¿Ğ¾Ğ´ÑŠĞµĞ·Ğ´ " << numberFloor << " ÑÑ‚Ğ°Ğ¶" << std::endl;
         return *this;
     }
 
