@@ -17,18 +17,24 @@
 #include <iostream>
 #include <ctime>
 #include "Home.h"
-#include "Apartment.h"
-#include "People.h"
-
-
 
 int main()
 {
     setlocale(LC_ALL, "");
     srand(time(NULL));
 
-    static int countHome = 0;
-
     Home home1 {1, 4, 5, 80};
     home1.printHome();
+
+    /*
+    for (int i{}; i < home1.getCountApartment(); ++i) {
+        home1.allApartment[i].printApartment();
+    }
+     */
+
+    People people1 {const_cast<char *>("Vick"), 21};
+    people1.printPeople();
+    people1.addApartment(1, 43);
+    people1.printPeople();
+    people1.addApartment(1, 97); // Нет такой квартиры
 }

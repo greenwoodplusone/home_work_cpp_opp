@@ -6,7 +6,6 @@
 #define UNTITLED_APARTMENT_H
 
 #include <cstdlib>
-#include "Home.h"
 #include "People.h"
 
 class Apartment {
@@ -14,14 +13,14 @@ class Apartment {
     int numberFloor;
     int numberFrontDoor;
     int area;
-    //People *allPeople;
 public:
-    Apartment(int numberApartment, int numberFloor, int numberFrontDoor, int area)
-            : numberApartment(numberApartment), numberFloor(numberFloor), numberFrontDoor(numberFrontDoor), area(area) {
-//        allPeople = new People[10] {nullptr};
-    }
+    People *allPeople;
 
-    Apartment () : Apartment(1, 1, 1, 30) {}
+    virtual ~Apartment();
+
+    Apartment(int numberApartment, int numberFloor, int numberFrontDoor, int area);
+
+    Apartment ();
 
     /*
     Apartment addPeople (People people) {
@@ -30,16 +29,16 @@ public:
     }
      */
 
-    Apartment printApartment (int numberApartment) {
-        std::cout << numberFrontDoor << " подъезд " << numberFloor << " этаж" << std::endl;
+    Apartment& printApartment () {
+        std::cout << this->numberFrontDoor << " подъезд " << this->numberFloor << " этаж" << std::endl;
         return *this;
     }
 
-    /*
+
     void setAllPeople(People *allPeople) {
         Apartment::allPeople = allPeople;
     }
-     */
+
 };
 
 

@@ -7,46 +7,26 @@
 
 
 #include <iostream>
-#include "Apartment.h"
-#include "Home.h"
 
 class People {
     char* name;
     int age;
     int numberApartment;
 public:
-    People(char *name, int age, int numberApartment = 0) : name(name), age(age), numberApartment{numberApartment} {}
+    People(char *name, int age, int numberApartmentP = 0);
 
-    ~People() {
-        name = nullptr;
-        delete name;
-    }
+    People();
 
-    People& setNumberApartment (int numberApartment) {
-        this->numberApartment = numberApartment;
-        return *this;
-    }
+    ~People();
 
-    int getNumberApartment () {
-        return numberApartment;
-    }
+    People& setNumberApartment (int numberApartment);
 
-    People& printPeople () {
-        std::cout << name << " (" << age << " лет) проживает в квартире № " <<
-                  numberApartment << std::endl;
+    int getNumberApartment ();
 
-        return *this;
-    }
+    People& printPeople ();
 
-    /*
-    void addApartment (int numberHomeP, int numberApartmentP) {
-        if (numberApartmentP > Home::arrayHome[numberHomeP].getCountApartment()) {
-            std::cout << "В данном доме нет такой квартиры!" << std::endl;
-        } else {
-            Home::arrayHome[numberHomeP].addPeopleAllApartment(numberApartmentP, this);
-        }
-    }
-   */
+    void addApartment (int numberHomeP, int numberApartmentP);
+
 };
 
 
