@@ -10,94 +10,23 @@
  */
 
 #include <iostream>
-#include "Fraction.h"
+#include "Flat.h"
 
-Fraction operator+(const Fraction& fraction1, const Fraction& fraction2) {
-    int numerator, denominator;
-
-    cout << fraction1.numerator << "/" << fraction1.denominator << " + " <<
-         fraction2.numerator << "/" << fraction2.denominator << " = ";
-
-    numerator = fraction1.numerator * fraction2.denominator + fraction2.numerator * fraction1.denominator;
-    denominator = fraction1.denominator * fraction2.denominator;
-
-    while (numerator % 2 == 0 && denominator % 2 == 0) {
-        numerator /= 2;
-        denominator /= 2;
-    }
-
-    cout << numerator << "/" << denominator << endl;
-
-    return Fraction(numerator, denominator);
-}
-
-Fraction operator-(const Fraction& fraction1, const Fraction& fraction2) {
-    int numerator, denominator;
-
-    cout << fraction1.numerator << "/" << fraction1.denominator << " - " <<
-         fraction2.numerator << "/" << fraction2.denominator << " = ";
-
-    numerator = fraction1.numerator * fraction2.denominator - fraction2.numerator * fraction1.denominator;
-    denominator = fraction1.denominator * fraction2.denominator;
-
-    while (numerator % 2 == 0 && denominator % 2 == 0) {
-        numerator /= 2;
-        denominator /= 2;
-    }
-
-    cout << numerator << "/" << denominator << endl;
-
-    return Fraction(numerator, denominator);
-}
-
-Fraction operator*(const Fraction& fraction1, const Fraction& fraction2) {
-    int numerator, denominator;
-
-    cout << fraction1.numerator << "/" << fraction1.denominator << " * " <<
-         fraction2.numerator << "/" << fraction2.denominator << " = ";
-
-    numerator = fraction1.numerator * fraction2.numerator;
-    denominator = fraction1.denominator *  fraction2.denominator;
-
-    while (numerator % 2 == 0 && denominator % 2 == 0) {
-        numerator /= 2;
-        denominator /= 2;
-    }
-
-    cout << numerator << "/" << denominator << endl;
-
-    return Fraction(numerator, denominator);
-}
-
-Fraction operator/(const Fraction& fraction1, const Fraction& fraction2) {
-    int numerator, denominator;
-
-    cout << fraction1.numerator << "/" << fraction1.denominator << " / " <<
-         fraction2.numerator << "/" << fraction2.denominator << " = ";
-
-    numerator = fraction1.numerator * fraction2.denominator;
-    denominator = fraction1.denominator * fraction2.numerator;
-
-    while (numerator % 2 == 0 && denominator % 2 == 0) {
-        numerator = numerator / 2;
-        denominator = denominator / 2;
-    }
-
-    cout << numerator << "/" << denominator << endl;
-
-    return Fraction(numerator, denominator);
+bool operator>(const Flat& flat1, const Flat flat2) {
+    return flat1.price > flat2.price;
 }
 
 int main()
 {
-    Fraction fraction1 = Fraction(1, 2);
-    Fraction fraction2 = Fraction(3, 4);
-    Fraction fraction3 = Fraction(5, 3);
-    Fraction fraction4 = Fraction(7, 2);
+    Flat flat1 = Flat();
+    Flat flat2 = Flat(45, 2000000, 2);
+    Flat flat3 = Flat(60, 2500000, 3);
 
-    fraction1 + fraction2;
-    fraction2 - fraction3;
-    fraction3 * fraction4;
-    fraction4 / fraction1;
+    std::cout << (flat1 == flat2) << std::endl;
 
+    flat1 = flat2;
+    std::cout << (flat1 == flat2) << std::endl;
+
+    std::cout << (flat2 > flat3) << std::endl;
+    std::cout << (flat3 > flat2) << std::endl;
 }
