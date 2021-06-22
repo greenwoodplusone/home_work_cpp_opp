@@ -49,3 +49,22 @@ MyString& MyString::printStr () {
 
     return *this;
 }
+
+char& MyString::operator[] (const int index)
+{
+    return str[index];
+}
+
+int MyString::operator()(char charP) {
+    for (int i = 0; i < MyString::strLength; i++) {
+        if (MyString::str[i] == charP) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+MyString::operator int() {
+    return strLength;
+}
