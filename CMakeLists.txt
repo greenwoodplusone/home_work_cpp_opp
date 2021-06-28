@@ -3,5 +3,4 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(untitled main.cpp
-         Reservoir.cpp Reservoir.h)
+add_executable(untitled main.cpp Date.cpp Date.h)

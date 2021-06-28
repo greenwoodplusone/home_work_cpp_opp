@@ -1,64 +1,125 @@
 /*
-Тема: Константная функция-член, explicit конструктор.
+Тема: Перегрузка операторов глобальными функциями,
+дружественные функции, дружественная перегрузка, перегрузка ввода-вывода
 
 Задание.
-Разработать класс Reservoir (водоем). Класс должен обязательно иметь поле «название». Класс должен содержать:
-конструктор по умолчанию, конструктор с параметрами,
-при необходимости реализовать деструктор и конструктор копирования.
-Добавить методы для:
-1. Определения приблизительного объема (ширина*длина*максимальная глубина);
-2. Определения площади водной поверхности;
-3. Метод для проверки относятся ли водоемы к одному
-типу (море-море; бассейн-пруд);
-4. Для сравнения площади водной поверхности водоемов
-одного типа;
-5. Для копирования объектов;
-6. Остальные методы на усмотрение разработчика (методы set и get).
-Написать интерфейс для работы с классом. Реализовать
-динамический массив объектов класса с возможностью
-добавления, удаления объектов из массива. Реализовать
-возможность записи информации об объектах массива
-в текстовый файл, бинарный файл.
-Используйте explicit конструктор и константные функциичлены (например, для отображения данных о водоёме и т.д.).
+Создайте класс с именем Date для хранения даты (или
+используйте ранее созданный).
+В классе должна быть функция-член, которая увеличивает день на 1.
+Напишите соответствующие конструкторы и функции-члены.
+В классе должны быть перегружены операциии ++, -- ,
+!=, ==, >, <, >>, <<, =, +=, -=, ().
+Используйте обычную и дружественную перегрузку.
  */
 
 #include <iostream>
 #include <ctime>
-#include "Reservoir.h"
+#include "Date.h"
 
-int main()
+bool operator==(const Date& date1, const Date& date2) {
+    return date1.getYear() == date2.getYear() &&
+           date1.getMonth() == date2.getMonth() &&
+           date1.getDay() == date2.getDay();
+}
+
+bool operator!=(const Date& date1, const Date& date2) {
+    return !(date1 == date2);
+}
+
+bool operator>(const Date& date1, const Date& date2) {
+    return date1.getYear() > date2.getYear() ||
+    date1.getYear() == date2.getYear() && date1.getMonth() > date2.getMonth() ||
+    date1.getYear() == date2.getYear() && date1.getMonth() == date2.getMonth() &&
+    date1.getDay() > date2.getDay();
+ }
+
+bool operator<(const Date& date1, const Date& date2) {
+    return !(date1 > date2);
+}
+
+ostream& operator<< (ostream& output, const Date& date)
 {
+    output << "Year : " << date.getYear() << ", " << "month : " << date.getMonth() << ", " <<
+           "day : " << date.getDay() << endl;
+    return output;
+}
+
+istream& operator>> (istream& input, Date& date)
+{
+    int year, month, day;
+
+    cout << "Введите год: ";
+    input >> year;
+    date.setYear(year);
+
+    cout << "Введите весяц: ";
+    input >> month;
+    if (month < 1 || month > 12) {
+        month = 1;
+    }
+    date.setMonth(month);
+
+    cout << "Введите день: ";
+    input >> day;
+    if (day < 1 || day > 31) {
+        day = 1;
+    }
+    date.setDay(day);
+    return input;
+}
+
+int main() {
     setlocale(LC_ALL, "");
-    srand(time(NULL));
 
-    Reservoir reservoir1 {"Pick", 100, 200, 15};
-    reservoir1.printReservoir();
-    std::cout << std::endl;
+    Date dateOne{ 2020, 12, 30 };
+    dateOne.printDate();
 
-    Reservoir reservoir2 {reservoir1};
-    reservoir2.printReservoir();
-    std::cout << std::endl;
+    Date dateTwo = Date::addingWorkingDays(dateOne, 5);
+    dateTwo.printDate();
 
-    Reservoir reservoir3 {1250, 1300, 30};
-    reservoir3.printReservoir();
-    std::cout << std::endl;
+    Date dateThree = Date::addingWorkingDays(dateOne, 50);
+    dateThree.printDate();
 
-    Reservoir reservoir4 {"My", 10, 3, 2};
-    reservoir4.printReservoir();
-    std::cout << std::endl;
+    ++dateThree;
+    dateThree.printDate();
+    dateThree++;
+    dateThree.printDate();
 
-    reservoir4.areaComparison(reservoir2);
-    std::cout << std::endl;
+    --dateThree;
+    dateThree.printDate();
 
-    reservoir1.areaComparison(reservoir3);
-    std::cout << std::endl;
+    dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;
+    dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;
+    dateThree--;dateThree--;dateThree--;
+    dateThree.printDate();
 
-    std::cout << reservoir2.getLengthReservoir() << std::endl;
-    std::cout << reservoir3.getLengthReservoir() << std::endl;
+    dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;
+    dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;
+    dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;
+    dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;
+    dateThree.printDate();
 
-    Reservoir::arrayReservoir[0]->printReservoir();
+    dateThree += 3;
+    dateThree.printDate();
 
-    Reservoir::deleteReservoirOfArray(reservoir1);
-    std::cout << std::endl;
-    Reservoir::arrayReservoir[0]->printReservoir();
+    dateThree -= 34;
+    dateThree.printDate();
+
+    dateThree = dateTwo;
+    dateThree.printDate();
+
+    Date dateFour {2021, 2, 4};
+    cout << ((dateFour > dateThree) ? "true" : "false") << endl;
+    cout << ((dateFour < dateThree) ? "true" : "false") << endl;
+
+    cout << ((dateTwo == dateThree) ? "true" : "false") << endl;
+    cout << ((dateTwo != dateThree) ? "true" : "false") << endl;
+
+    dateFour();
+    cout << dateFour;
+
+    cin >> dateFour;
+    cout << dateFour;
+
+    return 0;
 }
