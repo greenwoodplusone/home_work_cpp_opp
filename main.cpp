@@ -25,6 +25,26 @@ int main()
 {
     setlocale(LC_ALL, "");
 
-    Parentheses parentheses {"({x-y-z}*[x+2y]-(z+4x));"};
-    parentheses.rowIsTrue();
+    Parentheses parentheses1 {"((x-y-z)*[x+2y]-(z+4x));"};
+    parentheses1.print();
+    parentheses1.rowIsTrue();
+
+    std::cout << std::endl;
+
+    Parentheses parentheses2 {"((x-y(-z)*[x+2y]-(z+4x));"};
+    parentheses2.print();
+    parentheses2.rowIsTrue();
+
+    std::cout << std::endl;
+
+    Parentheses parentheses3 {"((x-y-z)*[x+2y]]-(z+4x));"};
+    parentheses3.print();
+    parentheses3.rowIsTrue();
+
+    std::cout << std::endl;
+
+    Parentheses parentheses4 {"([x-y-z}*[x+2y)-{z+4x)];"};
+    parentheses4.print();
+    parentheses4.rowIsTrue();
+
 }
