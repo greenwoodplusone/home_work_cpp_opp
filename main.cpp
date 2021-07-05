@@ -1,125 +1,63 @@
 /*
-Тема: Перегрузка операторов глобальными функциями,
-дружественные функции, дружественная перегрузка, перегрузка ввода-вывода
+Тема: Шаблоны классов
 
 Задание.
-Создайте класс с именем Date для хранения даты (или
-используйте ранее созданный).
-В классе должна быть функция-член, которая увеличивает день на 1.
-Напишите соответствующие конструкторы и функции-члены.
-В классе должны быть перегружены операциии ++, -- ,
-!=, ==, >, <, >>, <<, =, +=, -=, ().
-Используйте обычную и дружественную перегрузку.
+Создайте шаблонный класс матрица. Необходимо реализовать динамическое выделение памяти, очистку памяти,
+заполнение матрицы с клавиатуры, заполнение случайными значениями, отображение матрицы, арифметические
+операции с помощью перегруженных операторов (+, –,
+*, /), поиск максимального и минимального элемента.
  */
 
-#include <iostream>
-#include <ctime>
-#include "Date.h"
+#include "Matrix.h"
 
-bool operator==(const Date& date1, const Date& date2) {
-    return date1.getYear() == date2.getYear() &&
-           date1.getMonth() == date2.getMonth() &&
-           date1.getDay() == date2.getDay();
-}
-
-bool operator!=(const Date& date1, const Date& date2) {
-    return !(date1 == date2);
-}
-
-bool operator>(const Date& date1, const Date& date2) {
-    return date1.getYear() > date2.getYear() ||
-    date1.getYear() == date2.getYear() && date1.getMonth() > date2.getMonth() ||
-    date1.getYear() == date2.getYear() && date1.getMonth() == date2.getMonth() &&
-    date1.getDay() > date2.getDay();
- }
-
-bool operator<(const Date& date1, const Date& date2) {
-    return !(date1 > date2);
-}
-
-ostream& operator<< (ostream& output, const Date& date)
-{
-    output << "Year : " << date.getYear() << ", " << "month : " << date.getMonth() << ", " <<
-           "day : " << date.getDay() << endl;
-    return output;
-}
-
-istream& operator>> (istream& input, Date& date)
-{
-    int year, month, day;
-
-    cout << "Введите год: ";
-    input >> year;
-    date.setYear(year);
-
-    cout << "Введите весяц: ";
-    input >> month;
-    if (month < 1 || month > 12) {
-        month = 1;
+/*
+template <class T>
+Matrix<T> operator+(Matrix<T> matrix1, Matrix<T> matrix2) {
+    if (matrix1.getSizeMatrix() != matrix2.getSizeMatrix()) {
+        std::cout << "Matrix sizes not equal" << std::endl;
+        return nullptr;
     }
-    date.setMonth(month);
 
-    cout << "Введите день: ";
-    input >> day;
-    if (day < 1 || day > 31) {
-        day = 1;
+    Matrix<T> newMatrix{matrix1.getSizeMatrix()};
+
+    T** matrix = new T*[newMatrix.getSizeMatrix()];
+    for (int i = 0; i < newMatrix.getSizeMatrix(); i++) {
+        matrix[i] = new T[newMatrix.getSizeMatrix()] {0};
     }
-    date.setDay(day);
-    return input;
+
+    newMatrix.setMatrix(matrix);
+
+
+    for (int i = 0; i < matrix1.getSizeMatrix(); i++) {
+        for (int j = 0; j < matrix1.getSizeMatrix(); j++) {
+            newMatrix.getMatrix()[i][j] = matrix1.getMatrix()[i][j] + matrix2.getMatrix()[i][j];
+        }
+    }
+
+    return newMatrix;
 }
+ */
 
 int main() {
     setlocale(LC_ALL, "");
 
-    Date dateOne{ 2020, 12, 30 };
-    dateOne.printDate();
+    Matrix<int> matrix0;
+    matrix0.print();
 
-    Date dateTwo = Date::addingWorkingDays(dateOne, 5);
-    dateTwo.printDate();
+    Matrix<int> matrix1{3};
+    matrix1.print();
 
-    Date dateThree = Date::addingWorkingDays(dateOne, 50);
-    dateThree.printDate();
+    matrix1.filling();
+    matrix1.print();
 
-    ++dateThree;
-    dateThree.printDate();
-    dateThree++;
-    dateThree.printDate();
+    std::cout << matrix1.max() << std::endl;
+    std::cout << matrix1.min() << std::endl;
 
-    --dateThree;
-    dateThree.printDate();
+    Matrix<int> newMatrix1 = matrix1 + matrix1;
+    newMatrix1.print();
 
-    dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;
-    dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;
-    dateThree--;dateThree--;dateThree--;
-    dateThree.printDate();
-
-    dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;
-    dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;
-    dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;
-    dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;dateThree--;
-    dateThree.printDate();
-
-    dateThree += 3;
-    dateThree.printDate();
-
-    dateThree -= 34;
-    dateThree.printDate();
-
-    dateThree = dateTwo;
-    dateThree.printDate();
-
-    Date dateFour {2021, 2, 4};
-    cout << ((dateFour > dateThree) ? "true" : "false") << endl;
-    cout << ((dateFour < dateThree) ? "true" : "false") << endl;
-
-    cout << ((dateTwo == dateThree) ? "true" : "false") << endl;
-    cout << ((dateTwo != dateThree) ? "true" : "false") << endl;
-
-    dateFour();
-    cout << dateFour;
-
-    cin >> dateFour;
-    cout << dateFour;
+    Matrix<int> newMatrix2 = newMatrix1 - matrix1;
+    newMatrix2.print();
 
     return 0;
 }
